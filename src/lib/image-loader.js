@@ -4,25 +4,14 @@ export default function customImageLoader({ src }) {
     return src;
   }
 
-  // 检查是否在开发环境中
-  const isDevelopment = process.env.NODE_ENV === 'development';
-
   // 检查是否在 GitHub Pages 环境中
   const isGitHubPages = typeof window !== 'undefined' && window.location.hostname.includes('github.io');
 
-  // 根据环境设置basePath
-  const basePath = isGitHubPages ? '/italianbrainrot.github.io' : '';
-
-  // 如果在开发环境中或不是GitHub Pages环境，直接返回原始src
-  if (isDevelopment || !isGitHubPages) {
-    return src;
+  // 如果在GitHub Pages环境中且src是绝对路径，转换为相对路径
+  if (isGitHubPages && src.startsWith('/') && !src.startsWith('//')) {
+    return `.${src}`;
   }
 
-  // 检查src是否已经包含basePath
-  if (src.startsWith(basePath)) {
-    return src;
-  }
-
-  // 添加basePath到src
-  return `${basePath}${src}`;
+  // 其他情况直接返回原始src
+  return src;
 }

@@ -28,7 +28,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://italianbrainrot.com'),
+  metadataBase: new URL('https://italianbrainrot-games.github.io'),
   title: "Italian Brainrot Game Portal",
   description: "Discover, experience and share various Italian Brainrot games on our portal",
   icons: {

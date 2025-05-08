@@ -7,10 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "predeploy": "next build && touch out/.nojekyll && node fix-html-paths.js",
-    "deploy": "gh-pages -d out",
-    "build:custom-domain": "cross-env CUSTOM_DOMAIN=true next build && touch out/.nojekyll && echo 'your-domain.com' > out/CNAME",
-    "deploy:custom-domain": "npm run build:custom-domain && gh-pages -d out"
+    "predeploy": "next build && touch out/.nojekyll",
+    "deploy": "gh-pages -d out -t true",
+    "test-build": "next build && node check-build.js && serve out",
+    "check-build": "node check-build.js"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.2",

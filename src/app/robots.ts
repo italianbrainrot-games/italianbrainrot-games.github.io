@@ -11,7 +11,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/private/', '/admin/'],
     },
-    sitemap: 'https://italianbrainrot.com/sitemap.xml',
+    sitemap: 'https://italianbrainrot-games.github.io/sitemap.xml',
   };
 }
 

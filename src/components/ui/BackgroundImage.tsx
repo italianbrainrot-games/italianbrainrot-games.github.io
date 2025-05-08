@@ -16,7 +16,8 @@ export default function BackgroundImage() {
     let bgImagePath = '/bg-body.png';
 
     if (isGitHubPages) {
-      bgImagePath = '/italianbrainrot.github.io/bg-body.png';
+      // 在GitHub Pages环境中，使用相对路径
+      bgImagePath = './bg-body.png';
     } else if (isDevelopment) {
       // 在开发环境中，尝试使用相对路径
       bgImagePath = 'bg-body.png';

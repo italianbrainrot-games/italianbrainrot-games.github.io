@@ -4,7 +4,7 @@ import gamesData from '@/data/games.json';
 
 // 网站基本信息
 const SITE_NAME = 'Italian Brainrot Game Portal';
-const BASE_URL = 'https://italianbrainrot.com';
+const BASE_URL = 'https://italianbrainrot-games.github.io';
 
 
 // 通用SEO配置

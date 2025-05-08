@@ -9,7 +9,7 @@ export const dynamic = 'force-static';
 export const revalidate = false;
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://italianbrainrot.com';
+  const baseUrl = 'https://italianbrainrot-games.github.io';
 
   // Static routes
   const staticRoutes: MetadataRoute.Sitemap = [

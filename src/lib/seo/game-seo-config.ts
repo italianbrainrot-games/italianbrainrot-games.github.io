@@ -19,7 +19,7 @@ export function generateGameSEO({
   canonicalUrl,
 }: GameSEOProps): Metadata {
   const formattedTitle = `${title} - Italian Brainrot 游戏门户`;
-  
+
   return {
     title: formattedTitle,
     description,
@@ -60,18 +60,18 @@ export function generateGamesCatalogSEO(
   page: number = 1
 ): Metadata {
   const baseTitle = 'Italian Brainrot 游戏目录';
-  const title = category 
-    ? `${category}类游戏 - ${baseTitle}` 
+  const title = category
+    ? `${category}类游戏 - ${baseTitle}`
     : baseTitle;
-  
+
   const description = category
     ? `浏览我们的${category}类 Italian Brainrot 游戏集合，找到您喜欢的游戏并立即开始游玩。`
     : '浏览我们完整的 Italian Brainrot 游戏集合，找到您喜欢的游戏并立即开始游玩。';
-  
+
   const canonicalUrl = category
-    ? `https://italianbrainrot.com/games/category/${category}${page > 1 ? `?page=${page}` : ''}`
-    : `https://italianbrainrot.com/games${page > 1 ? `?page=${page}` : ''}`;
-  
+    ? `https://italianbrainrot-games.github.io/games/category/${category}${page > 1 ? `?page=${page}` : ''}`
+    : `https://italianbrainrot-games.github.io/games${page > 1 ? `?page=${page}` : ''}`;
+
   return {
     title,
     description,
