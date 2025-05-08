@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+
 import { generateBlogPostMetadata, generateBlogJsonLdData } from '@/lib/seo/blog-seo-config';
 
 // Export the metadata generation function

@@ -2,9 +2,15 @@ import Link from 'next/link';
 import Image from 'next/image';
 import GamePlayer from '@/components/game/game-player';
 import games from '@/data/games.json';
-import { formatDistanceToNow } from 'date-fns';
-import type { Metadata } from 'next';
+
 import { generateGameMetadata, generateGameJsonLdData } from '@/lib/seo/seo-config';
+
+// Required for static site generation with dynamic routes when using output: 'export'
+export async function generateStaticParams() {
+  return games.map((game) => ({
+    gameName: game.slug,
+  }));
+}
 
 // 游戏数据接口
 interface Game {
@@ -91,7 +97,7 @@ export default async function GamePage({ params }: { params: Promise<{ gameName:
               {/* 左侧 - 游戏封面图 */}
               <div className="md:w-1/4 shrink-0">
                 <div className="aspect-[16/9] rounded-lg overflow-hidden">
-                  <img
+                  <Image
                     src={game.imageUrl}
                     alt={game.title}
                     className="w-full h-full object-contain sm:object-cover"
@@ -279,7 +285,7 @@ function formatTimeAgo(timestamp: string): string {
     const diffYears = Math.floor(diffMonths / 12);
     if (diffYears === 1) return '1 year ago';
     return `${diffYears} years ago`;
-  } catch (error) {
+  } catch {
     return '5 minutes ago'; // Fallback
   }
 }

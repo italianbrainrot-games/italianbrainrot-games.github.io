@@ -1,41 +1,39 @@
 import type { Metadata } from 'next';
 import { generateJsonLd, generateGameJsonLd } from '@/lib/metadata';
-import blogData from '@/data/blog.json';
 import gamesData from '@/data/games.json';
 
 // 网站基本信息
 const SITE_NAME = 'Italian Brainrot Game Portal';
 const BASE_URL = 'https://italianbrainrot.com';
-const DEFAULT_DESCRIPTION = 'Discover, experience and share various Italian Brainrot games on our portal';
-const DEFAULT_IMAGE = '/images/share.png';
+
 
 // 通用SEO配置
-const defaultSEO: Metadata = {
-  title: SITE_NAME,
-  description: DEFAULT_DESCRIPTION,
-  keywords: ['Italian Brainrot', 'games', 'online games', 'free games', 'browser games'],
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: BASE_URL,
-    siteName: SITE_NAME,
-    images: [
-      {
-        url: DEFAULT_IMAGE,
-        width: 1200,
-        height: 630,
-        alt: SITE_NAME,
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    creator: '@ItalianBrainrot',
-  },
-  alternates: {
-    canonical: BASE_URL,
-  },
-};
+// const defaultSEO: Metadata = {
+//   title: SITE_NAME,
+//   description: DEFAULT_DESCRIPTION,
+//   keywords: ['Italian Brainrot', 'games', 'online games', 'free games', 'browser games'],
+//   openGraph: {
+//     type: 'website',
+//     locale: 'en_US',
+//     url: BASE_URL,
+//     siteName: SITE_NAME,
+//     images: [
+//       {
+//         url: DEFAULT_IMAGE,
+//         width: 1200,
+//         height: 630,
+//         alt: SITE_NAME,
+//       },
+//     ],
+//   },
+//   twitter: {
+//     card: 'summary_large_image',
+//     creator: '@ItalianBrainrot',
+//   },
+//   alternates: {
+//     canonical: BASE_URL,
+//   },
+// };
 
 /**
  * 首页SEO配置

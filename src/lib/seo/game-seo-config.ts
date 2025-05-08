@@ -75,7 +75,7 @@ export function generateGamesCatalogSEO(
   return {
     title,
     description,
-    keywords: ['Italian Brainrot', '游戏', '游戏目录', category].filter(Boolean),
+    keywords: ['Italian Brainrot', '游戏', '游戏目录', ...(category ? [category] : [])],
     openGraph: {
       title,
       description,
@@ -103,3 +103,4 @@ export function generateGamesCatalogSEO(
     },
   };
 }
+

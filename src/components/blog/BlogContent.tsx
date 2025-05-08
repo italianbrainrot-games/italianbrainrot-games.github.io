@@ -22,6 +22,7 @@ interface BlogPost {
   content: string;
   tags: string[];
   categories: string[];
+  short_desc: string;
 }
 
 interface BlogContentProps {
@@ -154,7 +155,7 @@ export default function BlogContent({ post }: BlogContentProps) {
             <div className="max-w-none pl-4 md:pl-6">
               {/* Introduction area */}
               <div className="mb-10 bg-white/5 p-6 rounded-lg border-l-4 border-orange-500 italic text-lg text-white/90">
-                <p>Explore "Italian brainrot," the strangest internet meme phenomenon of 2025, and discover how these AI-generated creatures with pseudo-Italian names have taken over global social media.</p>
+                <p>{post.short_desc}</p>
               </div>
 
               {/* Add article publish date in machine-readable format for SEO */}

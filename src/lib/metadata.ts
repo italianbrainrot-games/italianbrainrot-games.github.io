@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 /**
  * 生成结构化的JSON-LD数据
  */
-export function generateJsonLd(data: any): string {
+export function generateJsonLd(data: unknown): string {
   return `<script type="application/ld+json">${JSON.stringify(data)}</script>`;
 }
 
