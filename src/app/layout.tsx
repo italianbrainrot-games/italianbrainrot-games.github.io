@@ -4,7 +4,7 @@ import "./globals.css";
 import Link from "next/link";
 import Image from "next/image";
 import BackgroundImage from "@/components/ui/BackgroundImage";
-import CustomImage from "@/components/ui/CustomImage";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

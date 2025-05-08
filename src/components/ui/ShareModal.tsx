@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
@@ -92,7 +93,7 @@ export default function ShareModal({ isOpen, onClose, title, url, imageUrl }: Sh
         {/* 显示将要分享的图片预览 */}
         {imageUrl && (
           <div className="mb-4 relative aspect-video w-full overflow-hidden rounded-lg border border-white/20">
-            <img
+            <Image
               src={imageUrl}
               alt={title}
               className="w-full h-full object-cover"
