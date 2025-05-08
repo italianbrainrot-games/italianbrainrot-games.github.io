@@ -134,6 +134,10 @@ export default function RootLayout({
           rel="stylesheet"
           href="/no-flash.css"
         />
+        <meta 
+          property="og:logo" 
+          content="/logo.png" 
+        />
         <style dangerouslySetInnerHTML={{
           __html: `
             body {

@@ -3,6 +3,7 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import Image from 'next/image';
+import rehypeRaw from 'rehype-raw';
 
 // No need for custom interfaces as we're using the default component props
 
@@ -13,6 +14,7 @@ interface CustomMarkdownProps {
 export default function CustomMarkdown({ content }: CustomMarkdownProps) {
   return (
     <ReactMarkdown
+      rehypePlugins={[rehypeRaw]}
       components={{
         h1: ({ ...props }) => (
           <h1
@@ -38,9 +40,12 @@ export default function CustomMarkdown({ content }: CustomMarkdownProps) {
             {...props}
           />
         ),
-        a: ({ ...props }) => (
+        a: ({ href, target, ...props }) => (
           <a
             className="text-orange-400 font-medium hover:text-orange-300 transition-colors no-underline"
+            href={href}
+            target={target || "_blank"}
+            rel={target === "_blank" ? "noopener noreferrer" : undefined}
             {...props}
           />
         ),
