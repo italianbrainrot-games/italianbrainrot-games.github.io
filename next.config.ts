@@ -1,5 +1,9 @@
 import type { NextConfig } from "next";
+// 检查是否在GitHub Actions环境中
 const isGithubActions = process.env.GITHUB_ACTIONS || false;
+// 检查是否在开发环境中
+const isDevelopment = process.env.NODE_ENV === 'development';
+
 let assetPrefix = "";
 let basePath = "";
 

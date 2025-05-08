@@ -4,6 +4,7 @@ import VerticalGameMarquee from '@/components/home/VerticalGameMarquee';
 import HorizontalGameMarquee from '@/components/home/HorizontalGameMarquee';
 import ArticleCarousel from '@/components/home/ArticleCarousel';
 import ResponsiveStyles from '@/components/home/ResponsiveStyles';
+import ShareButton from '@/components/ui/ShareButton';
 import gamesData from '@/data/games.json';
 import blogData from '@/data/blog.json';
 import type { Metadata } from 'next';
@@ -86,8 +87,8 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
             {/* Popular game cards */}
             {popularGames.map((game) => (
-              <Link key={game.slug} href={`/games/${game.slug}`} className="block">
-                <div className="trending-game-card bg-black/40 backdrop-blur-md rounded-lg overflow-hidden border border-white/10 transition-all duration-300 hover:shadow-lg">
+              <div key={game.slug} className="trending-game-card bg-black/40 backdrop-blur-md rounded-lg overflow-hidden border border-white/10 transition-all duration-300 hover:shadow-lg">
+                <Link href={`/games/${game.slug}`}>
                   <div className="relative aspect-[16/9] overflow-hidden">
                     <Image
                       src={game.iconUrl}
@@ -101,19 +102,29 @@ export default function Home() {
                       {game.rating.toFixed(1)}
                     </div>
                   </div>
-                  <div className="p-3">
+                </Link>
+                <div className="p-3">
+                  <Link href={`/games/${game.slug}`}>
                     <h3 className="font-bold text-base md:text-lg text-white transition-colors duration-300 trending-game-title line-clamp-2">{game.name}</h3>
                     <p className="text-white/70 text-xs mt-1 mb-2 line-clamp-2">{game.description.substring(0, 150)}...</p>
-                    <div className="flex flex-wrap gap-1 mt-2">
+                  </Link>
+                  <div className="flex justify-between items-center mt-2">
+                    <div className="flex flex-wrap gap-1">
                       {game.category.slice(0, 2).map((cat, idx) => (
                         <span key={idx} className="text-xs px-2 py-0.5 bg-white/10 rounded-full text-white/80">
                           {cat}
                         </span>
                       ))}
                     </div>
+                    <ShareButton
+                      title={game.name}
+                      iconOnly={true}
+                      imageUrl={game.iconUrl}
+                      className="text-white/70 hover:text-white p-1.5 rounded-full hover:bg-white/10"
+                    />
                   </div>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         </section>
@@ -136,14 +147,16 @@ export default function Home() {
             {/* Blog post cards */}
             {blogData.map((post) => (
               <div key={post.slug} className="bg-black/40 backdrop-blur-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow border border-white/10">
-                <div className="relative aspect-video">
-                  <Image
-                    src={post.coverImage}
-                    alt={post.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
+                <Link href={`/blog/${post.slug}`}>
+                  <div className="relative aspect-video">
+                    <Image
+                      src={post.coverImage}
+                      alt={post.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                </Link>
                 <div className="p-3">
                   <div className="flex flex-wrap gap-1 mb-2">
                     {post.categories.slice(0, 2).map((category) => (
@@ -152,17 +165,27 @@ export default function Home() {
                       </span>
                     ))}
                   </div>
-                  <h3 className="font-medium text-base mb-1 text-white">{post.title}</h3>
-                  <p className="text-white/70 text-xs mb-2 line-clamp-2">{post.excerpt}</p>
+                  <Link href={`/blog/${post.slug}`}>
+                    <h3 className="font-medium text-base mb-1 text-white hover:text-orange-400 transition-colors">{post.title}</h3>
+                    <p className="text-white/70 text-xs mb-2 line-clamp-2">{post.excerpt}</p>
+                  </Link>
                   <div className="flex justify-between items-center">
                     <span className="text-xs text-white/50">{post.date}</span>
-                    <Link href={`/blog/${post.slug}`} className="text-orange-400 hover:text-orange-300 transition-colors text-xs flex items-center">
-                      Read More
-                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-1">
-                        <path d="M5 12h14"></path>
-                        <path d="m12 5 7 7-7 7"></path>
-                      </svg>
-                    </Link>
+                    <div className="flex items-center gap-2">
+                      <ShareButton
+                        title={post.title}
+                        iconOnly={true}
+                        imageUrl={post.coverImage}
+                        className="text-white/70 hover:text-white p-1 rounded-full hover:bg-white/10"
+                      />
+                      <Link href={`/blog/${post.slug}`} className="text-orange-400 hover:text-orange-300 transition-colors text-xs flex items-center">
+                        Read More
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-1">
+                          <path d="M5 12h14"></path>
+                          <path d="m12 5 7 7-7 7"></path>
+                        </svg>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>

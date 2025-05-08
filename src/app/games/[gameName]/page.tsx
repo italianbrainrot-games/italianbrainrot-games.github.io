@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import GamePlayer from '@/components/game/game-player';
+import ShareButton from '@/components/ui/ShareButton';
 import games from '@/data/games.json';
 
 import { generateGameMetadata, generateGameJsonLdData } from '@/lib/seo/seo-config';
@@ -107,7 +108,15 @@ export default async function GamePage({ params }: { params: Promise<{ gameName:
 
               {/* 中间 - 游戏标题和描述 */}
               <div className="md:w-2/4">
-                <h1 className="text-3xl font-bold mb-3 text-white">{game.title}</h1>
+                <div className="flex justify-between items-start mb-3">
+                  <h1 className="text-3xl font-bold text-white">{game.title}</h1>
+                  <ShareButton
+                    title={game.title}
+                    imageUrl={game.imageUrl}
+                    iconOnly={true}
+                    className="text-white/70 hover:text-white p-1.5 rounded-full hover:bg-white/10"
+                  />
+                </div>
                 <p className="text-white/80 mb-4">{game.description}</p>
 
                 {/* 游戏控制说明 */}

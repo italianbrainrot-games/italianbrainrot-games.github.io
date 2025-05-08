@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import Image from "next/image";
+import BackgroundImage from "@/components/ui/BackgroundImage";
+import CustomImage from "@/components/ui/CustomImage";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -122,6 +124,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased text-white`}
       >
+        <BackgroundImage />
         <header className="border-b border-white/10 bg-black/80 backdrop-blur-sm sticky top-0 z-50">
           <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-20">

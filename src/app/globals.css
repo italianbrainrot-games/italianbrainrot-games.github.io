@@ -1,3 +1,4 @@
+
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
@@ -143,10 +144,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    background-image: url('/bg-body.png');
-    background-repeat: repeat;
-    background-size: auto;
-    background-attachment: fixed;
+    /* 背景图片将通过 JavaScript 动态设置 */
   }
 }
 

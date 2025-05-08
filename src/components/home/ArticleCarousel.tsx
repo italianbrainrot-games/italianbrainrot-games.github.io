@@ -6,6 +6,7 @@ import Image from 'next/image';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import blogData from '@/data/blog.json';
+import ShareButton from '@/components/ui/ShareButton';
 
 // 文章数据接口
 interface Article {
@@ -68,10 +69,11 @@ export default function ArticleCarousel() {
                           <ReadIcon className="w-4 h-4 md:w-5 md:h-5 mr-1 md:mr-2" />
                           READ ARTICLE
                         </Link>
-                        <button className="border border-white text-white px-3 md:px-4 py-1.5 md:py-2 rounded-md flex items-center text-xs md:text-base">
-                          <ShareIcon className="w-4 h-4 md:w-5 md:h-5 mr-1 md:mr-2" />
-                          SHARE
-                        </button>
+                        <ShareButton
+                          title={article.title}
+                          imageUrl={article.coverImage}
+                          className="border border-white text-white px-3 md:px-4 py-1.5 md:py-2 rounded-md flex items-center text-xs md:text-base"
+                        />
                       </div>
                       <div className="sm:ml-auto flex items-center gap-1 md:gap-2 mt-2 sm:mt-0">
                         <button
