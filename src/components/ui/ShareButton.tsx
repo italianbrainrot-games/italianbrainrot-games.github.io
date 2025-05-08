@@ -10,6 +10,7 @@ interface ShareButtonProps {
   showIcon?: boolean;
   iconOnly?: boolean;
   imageUrl?: string;
+  customUrl?: string; // 添加自定义URL属性
 }
 
 export default function ShareButton({
@@ -18,22 +19,28 @@ export default function ShareButton({
   buttonText = 'SHARE',
   showIcon = true,
   iconOnly = false,
-  imageUrl
+  imageUrl,
+  customUrl
 }: ShareButtonProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentUrl, setCurrentUrl] = useState('');
 
-  // 获取当前页面的 URL
-  const getShareUrl = () => {
-    if (typeof window !== 'undefined') {
-      return window.location.href;
+  // 打开模态框并获取 URL
+  const handleOpenModal = () => {
+    if (customUrl) {
+      // 如果提供了自定义URL，使用它
+      setCurrentUrl(customUrl);
+    } else if (typeof window !== 'undefined') {
+      // 否则获取当前页面的URL
+      setCurrentUrl(window.location.href);
     }
-    return '';
+    setIsModalOpen(true);
   };
 
   return (
     <>
       <button
-        onClick={() => setIsModalOpen(true)}
+        onClick={handleOpenModal}
         className={`flex items-center justify-center transition-all duration-300 ${className}`}
         aria-label="Share"
       >
@@ -64,7 +71,7 @@ export default function ShareButton({
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         title={title}
-        url={getShareUrl()}
+        url={currentUrl}
         imageUrl={imageUrl}
       />
     </>

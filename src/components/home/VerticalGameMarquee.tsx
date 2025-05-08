@@ -30,7 +30,7 @@ export default function VerticalGameMarquee() {
   }));
 
   return (
-    <div className="relative bg-black/20 backdrop-blur-md rounded-xl overflow-hidden h-[calc(100vh-100px)] lg:h-[calc(100vh-120px)] border border-white/10">
+    <div className="relative bg-black/20 backdrop-blur-md rounded-xl overflow-hidden border border-white/10" style={{ height: 'var(--vertical-game-marquee-height, calc(70vh - 120px))' }}>
       <div className="flex justify-between items-center p-2 border-b border-white/10">
         <h2 className="text-base font-bold flex items-center text-white">
           <span className="bg-red-600 text-white px-1 py-0.5 rounded-sm mr-1.5 text-xs">New</span>
@@ -42,13 +42,13 @@ export default function VerticalGameMarquee() {
         </div>
       </div>
 
-      <div className="relative h-full max-h-[calc(100vh-170px)] overflow-hidden px-0">
+      <div className="relative h-full max-h-[calc(100%-50px)] overflow-hidden px-0">
         {!isPaused ? (
           <Marquee
             vertical
             pauseOnHover={true}
             reverse={isReversed}
-            className="py-4 [--gap:1.25rem]"
+            className="py-2 [--gap:0.75rem]"
             repeat={2}
           >
             {games.map((game) => (
@@ -76,7 +76,7 @@ export default function VerticalGameMarquee() {
 function GameCard({ game }: { game: Game }) {
   return (
     <Link href={`/games/${game.id}`} className="block w-full">
-      <div className="relative w-[90%] aspect-square rounded-lg overflow-hidden mx-auto my-1 game-card-container">
+      <div className="relative w-[85%] aspect-[16/9] rounded-lg overflow-hidden mx-auto my-1 game-card-container">
         <Image
           src={game.imageUrl}
           alt={game.title}
@@ -84,10 +84,10 @@ function GameCard({ game }: { game: Game }) {
           className="object-cover transition-transform duration-300 ease-in-out game-card-image origin-center"
         />
         {/* 底部毛玻璃标题栏 */}
-        <div className="absolute bottom-0 left-0 right-0 bg-black/40 backdrop-blur-md p-3 pointer-events-none flex justify-between items-center rounded-b-lg">
-          <h3 className="text-white font-bold text-base md:text-lg leading-tight transition-colors duration-300 game-card-title pr-2 truncate">{game.title}</h3>
-          <div className="bg-white/20 backdrop-blur-sm rounded-full p-1.5">
-            <PlayIcon className="w-5 h-5 text-white" />
+        <div className="absolute bottom-0 left-0 right-0 bg-black/40 backdrop-blur-md p-2 pointer-events-none flex justify-between items-center rounded-b-lg">
+          <h3 className="text-white font-bold text-sm md:text-base leading-tight transition-colors duration-300 game-card-title pr-2 truncate">{game.title}</h3>
+          <div className="bg-white/20 backdrop-blur-sm rounded-full p-1">
+            <PlayIcon className="w-4 h-4 text-white" />
           </div>
         </div>
       </div>

@@ -4,13 +4,15 @@ import VerticalGameMarquee from '@/components/home/VerticalGameMarquee';
 import HorizontalGameMarquee from '@/components/home/HorizontalGameMarquee';
 import ArticleCarousel from '@/components/home/ArticleCarousel';
 import ResponsiveStyles from '@/components/home/ResponsiveStyles';
-import ShareButton from '@/components/ui/ShareButton';
+import CustomShareButton from '@/components/ui/CustomShareButton';
 import gamesData from '@/data/games.json';
 import blogData from '@/data/blog.json';
 import type { Metadata } from 'next';
 import { getHomeSEO } from '@/lib/seo/seo-config';
 
 export const metadata: Metadata = getHomeSEO();
+export const dynamic = 'force-static';
+export const revalidate = false;
 
 // Star icon component
 function StarIcon(props: React.SVGProps<SVGSVGElement>) {
@@ -51,12 +53,12 @@ export default function Home() {
         {/* Desktop layout - Game marquee on left, article carousel on right */}
         <div className="hidden lg:grid lg:grid-cols-12 gap-6 py-4">
           {/* Left side game marquee (vertical) */}
-          <div className="lg:col-span-4 xl:col-span-3">
+          <div className="lg:col-span-4 xl:col-span-3 h-full">
             <VerticalGameMarquee />
           </div>
 
           {/* Right side article carousel */}
-          <div className="lg:col-span-8 xl:col-span-9 pr-12">
+          <div className="lg:col-span-8 xl:col-span-9 pr-12 h-full">
             <ArticleCarousel />
           </div>
         </div>
@@ -116,8 +118,10 @@ export default function Home() {
                         </span>
                       ))}
                     </div>
-                    <ShareButton
+                    <CustomShareButton
                       title={game.name}
+                      slug={game.slug}
+                      type="game"
                       iconOnly={true}
                       imageUrl={game.iconUrl}
                       className="text-white/70 hover:text-white p-1.5 rounded-full hover:bg-white/10"
@@ -172,8 +176,10 @@ export default function Home() {
                   <div className="flex justify-between items-center">
                     <span className="text-xs text-white/50">{post.date}</span>
                     <div className="flex items-center gap-2">
-                      <ShareButton
+                      <CustomShareButton
                         title={post.title}
+                        slug={post.slug}
+                        type="blog"
                         iconOnly={true}
                         imageUrl={post.coverImage}
                         className="text-white/70 hover:text-white p-1 rounded-full hover:bg-white/10"

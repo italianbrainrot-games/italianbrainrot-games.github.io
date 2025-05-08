@@ -4,6 +4,9 @@ import GamePlayer from '@/components/game/game-player';
 import ShareButton from '@/components/ui/ShareButton';
 import games from '@/data/games.json';
 
+export const dynamic = 'force-static';
+export const revalidate = false;
+
 import { generateGameMetadata, generateGameJsonLdData } from '@/lib/seo/seo-config';
 
 // Required for static site generation with dynamic routes when using output: 'export'
@@ -102,6 +105,8 @@ export default async function GamePage({ params }: { params: Promise<{ gameName:
                     src={game.imageUrl}
                     alt={game.title}
                     className="w-full h-full object-contain sm:object-cover"
+                    width={500}
+                    height={281}
                   />
                 </div>
               </div>

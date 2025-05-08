@@ -22,10 +22,17 @@ export default function ShareModal({ isOpen, onClose, title, url, imageUrl }: Sh
     return () => setMounted(false);
   }, []);
 
+  // 使用传入的 URL，如果为空则获取当前 URL
+  const getCurrentUrl = () => {
+    if (url) return url;
+    return typeof window !== 'undefined' ? window.location.href : '';
+  };
+
   // 复制链接到剪贴板
   const copyToClipboard = async () => {
     try {
-      await navigator.clipboard.writeText(url);
+      const currentUrl = getCurrentUrl();
+      await navigator.clipboard.writeText(currentUrl);
       setCopySuccess(true);
       setTimeout(() => setCopySuccess(false), 2000);
     } catch (err) {
@@ -35,9 +42,10 @@ export default function ShareModal({ isOpen, onClose, title, url, imageUrl }: Sh
 
   // 分享到各个社交媒体平台
   const shareToTwitter = () => {
+    const currentUrl = getCurrentUrl();
     const params = new URLSearchParams({
       text: title,
-      url: url,
+      url: currentUrl,
       ...(imageUrl && { image: imageUrl })
     });
     window.open(`https://twitter.com/intent/tweet?${params.toString()}`, '_blank');
@@ -45,24 +53,29 @@ export default function ShareModal({ isOpen, onClose, title, url, imageUrl }: Sh
 
   const shareToFacebook = () => {
     // Facebook doesn't support image parameter in URL, it uses Open Graph meta tags
-    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+    const currentUrl = getCurrentUrl();
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`, '_blank');
   };
 
   const shareToLinkedIn = () => {
     // LinkedIn doesn't support image parameter in URL, it uses Open Graph meta tags
-    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
+    const currentUrl = getCurrentUrl();
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`, '_blank');
   };
 
   const shareToWhatsApp = () => {
-    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(title + ' ' + url)}`, '_blank');
+    const currentUrl = getCurrentUrl();
+    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(title + ' ' + currentUrl)}`, '_blank');
   };
 
   const shareToReddit = () => {
-    window.open(`https://www.reddit.com/submit?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`, '_blank');
+    const currentUrl = getCurrentUrl();
+    window.open(`https://www.reddit.com/submit?url=${encodeURIComponent(currentUrl)}&title=${encodeURIComponent(title)}`, '_blank');
   };
 
   const shareToTelegram = () => {
-    window.open(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`, '_blank');
+    const currentUrl = getCurrentUrl();
+    window.open(`https://t.me/share/url?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(title)}`, '_blank');
   };
 
   // 如果组件未挂载或模态框未打开，则不渲染
@@ -97,6 +110,9 @@ export default function ShareModal({ isOpen, onClose, title, url, imageUrl }: Sh
               src={imageUrl}
               alt={title}
               className="w-full h-full object-cover"
+              width={640}
+              height={360}
+              priority
             />
           </div>
         )}
@@ -174,7 +190,7 @@ export default function ShareModal({ isOpen, onClose, title, url, imageUrl }: Sh
           <div className="flex items-center">
             <input
               type="text"
-              value={url}
+              value={getCurrentUrl()}
               readOnly
               className="flex-1 bg-black/50 border border-white/20 rounded-l-md px-3 py-2 text-white text-sm focus:outline-none"
             />

@@ -105,20 +105,22 @@ export default function GamePlayer({ game }: { game: Game }) {
         ) : (
           <div className="relative w-full overflow-hidden rounded-none sm:rounded-[2rem]">
             <div
-              className="w-full"
+              className="w-full flex items-center justify-center"
               style={{
                 height: 'calc(100vh - 200px)',
                 minHeight: '400px',
                 position: 'relative'
               }}
             >
-              <Image
-                src={game.imageUrl}
-                alt={game.title}
-                fill
-                className="object-contain sm:object-cover"
-                priority
-              />
+              <div className="relative w-[480px] h-[270px] max-w-full">
+                <Image
+                  src={game.imageUrl}
+                  alt={game.title}
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none"></div>
               <button
                 onClick={playGame}

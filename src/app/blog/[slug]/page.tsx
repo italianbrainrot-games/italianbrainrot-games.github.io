@@ -10,6 +10,9 @@ export async function generateStaticParams() {
   }));
 }
 
+export const dynamic = 'force-static';
+export const revalidate = false;
+
 // Define the types for our blog post
 interface BlogPost {
   id: string;

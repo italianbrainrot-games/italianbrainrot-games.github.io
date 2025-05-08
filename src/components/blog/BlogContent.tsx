@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import CustomMarkdown from './CustomMarkdown';
-import ShareButton from '@/components/ui/ShareButton';
+import CustomShareButton from '@/components/ui/CustomShareButton';
 import gamesData from '@/data/games.json';
 
 interface BlogPost {
@@ -269,8 +269,10 @@ export default function BlogContent({ post }: BlogContentProps) {
               </div>
 
               <div className="flex items-center space-x-4">
-                <ShareButton
+                <CustomShareButton
                   title={post.title}
+                  slug={post.slug}
+                  type="blog"
                   imageUrl={post.coverImage}
                   className="flex items-center space-x-2 text-white/80 hover:text-white transition-colors group"
                   buttonText={

@@ -6,7 +6,7 @@ import Image from 'next/image';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import blogData from '@/data/blog.json';
-import ShareButton from '@/components/ui/ShareButton';
+import CustomShareButton from '@/components/ui/CustomShareButton';
 
 // 文章数据接口
 interface Article {
@@ -31,7 +31,10 @@ export default function ArticleCarousel() {
   const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
 
   return (
-    <div className="relative bg-black/20 backdrop-blur-md rounded-xl overflow-hidden border border-white/10" style={{ aspectRatio: 'calc(var(--article-carousel-aspect-ratio, 1.8/1))' }}>
+    <div className="relative bg-black/20 backdrop-blur-md rounded-xl overflow-hidden border border-white/10" style={{
+      aspectRatio: 'calc(var(--article-carousel-aspect-ratio, 1.8/1))',
+      height: 'var(--article-carousel-height, auto)'
+    }}>
 
 
       <div className="overflow-hidden h-full" ref={emblaRef}>
@@ -69,8 +72,10 @@ export default function ArticleCarousel() {
                           <ReadIcon className="w-4 h-4 md:w-5 md:h-5 mr-1 md:mr-2" />
                           READ ARTICLE
                         </Link>
-                        <ShareButton
+                        <CustomShareButton
                           title={article.title}
+                          slug={article.slug}
+                          type="blog"
                           imageUrl={article.coverImage}
                           className="border border-white text-white px-3 md:px-4 py-1.5 md:py-2 rounded-md flex items-center text-xs md:text-base"
                         />

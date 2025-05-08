@@ -4,6 +4,8 @@ import "./globals.css";
 import Link from "next/link";
 import Image from "next/image";
 import BackgroundImage from "@/components/ui/BackgroundImage";
+import OptimizedBackground from "@/components/ui/OptimizedBackground";
+
 
 
 const geistSans = Geist({
@@ -121,10 +123,36 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="preload"
+          href="/bg-body.png"
+          as="image"
+          type="image/png"
+        />
+        <link
+          rel="stylesheet"
+          href="/no-flash.css"
+        />
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            body {
+              background-color: #000 !important;
+              background-image: url('/bg-body.png') !important;
+              background-repeat: repeat !important;
+              background-size: auto !important;
+              background-attachment: fixed !important;
+            }
+          `
+        }} />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased text-white`}
       >
+        {/* Use both approaches for maximum compatibility */}
         <BackgroundImage />
+        <OptimizedBackground />
+
         <header className="border-b border-white/10 bg-black/80 backdrop-blur-sm sticky top-0 z-50">
           <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-20">

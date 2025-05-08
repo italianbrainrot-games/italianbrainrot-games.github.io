@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "predeploy": "next build && touch out/.nojekyll",
-    "deploy": "gh-pages -d out -t true",
+    "deploy": "gh-pages -d out --dotfiles",
     "test-build": "next build && node check-build.js && serve out",
     "check-build": "node check-build.js"
   },
