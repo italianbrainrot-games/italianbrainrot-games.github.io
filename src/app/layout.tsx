@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import BackgroundImage from "@/components/ui/BackgroundImage";
 import OptimizedBackground from "@/components/ui/OptimizedBackground";
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 
 
@@ -153,6 +154,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased text-white`}
       >
+        {/* Google Analytics */}
+        <GoogleAnalytics gaId="G-9WS768Q3W8" />
+        
         {/* Use both approaches for maximum compatibility */}
         <BackgroundImage />
         <OptimizedBackground />
