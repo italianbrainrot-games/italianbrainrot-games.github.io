@@ -10,7 +10,10 @@
     "predeploy": "next build && touch out/.nojekyll",
     "deploy": "gh-pages -d out --dotfiles",
     "test-build": "next build && node check-build.js && serve out",
-    "check-build": "node check-build.js"
+    "check-build": "node check-build.js",
+    "generate-favicons": "node scripts/generate-favicons.js",
+    "generate-favicons-js": "node scripts/generate-favicons-pure-js.js",
+    "generate-png-favicons": "node scripts/generate-png-favicons.js"
   },
   "dependencies": {
     "@next/third-parties": "^15.3.2",
@@ -29,7 +32,9 @@
     "react-icons": "^5.5.0",
     "react-markdown": "^10.1.0",
     "rehype-raw": "^7.0.0",
-    "tailwind-merge": "^3.2.0"
+    "sharp-ico": "^0.1.5",
+    "tailwind-merge": "^3.2.0",
+    "to-ico": "^1.1.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

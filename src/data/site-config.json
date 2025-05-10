@@ -1,0 +1,216 @@
+{
+  "siteInfo": {
+    "title": "Merge Fellas Games",
+    "description": "Join Merge Fellas Games for a fun puzzle game that blends meme culture with Italian flair. Challenge your mind with innovative gameplay!",
+    "siteName": "Merge Fellas Games",
+    "shortName": "Merge Fellas",
+    "url": "https://mergefellas-games.github.io",
+    "language": "en",
+    "creator": "@MergeFellas",
+    "twitterUsername": "@MergeFellas",
+    "locale": "en_US",
+    "themeColor": "#000000",
+    "backgroundColor": "#000000",
+    "googleAnalyticsId": "G-3KVNYN1T95",
+    "keywords": "Merge Fellas, meme culture, Italian Brainrot, merge brainrot, brainrot merge game, merge brainrot, merge fellas brainrot, brainrot"
+  },
+  "seo": {
+    "metadataBase": "https://mergefellas-games.github.io",
+    "icons": {
+      "icon": [
+        { "url": "/favicon.ico", "sizes": "16x16" },
+        { "url": "/favicon.ico", "sizes": "32x32" },
+        { "url": "/favicon.ico", "sizes": "48x48" },
+        { "url": "/favicon/favicon-16x16.png", "sizes": "16x16", "type": "image/png" },
+        { "url": "/favicon/favicon-32x32.png", "sizes": "32x32", "type": "image/png" }
+      ],
+      "apple": [
+        { "url": "/favicon/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+      ],
+      "other": [
+        {
+          "rel": "mask-icon",
+          "url": "/favicon/safari-pinned-tab.svg",
+          "color": "#000000"
+        },
+        {
+          "rel": "manifest",
+          "url": "/site.webmanifest"
+        }
+      ]
+    },
+    "appleWebApp": {
+      "capable": true,
+      "statusBarStyle": "black-translucent",
+      "startupImage": [
+        {
+          "url": "/favicon/apple-splash-2048-2732.png",
+          "media": "(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
+        },
+        {
+          "url": "/favicon/apple-splash-1668-2388.png",
+          "media": "(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
+        },
+        {
+          "url": "/favicon/apple-splash-1536-2048.png",
+          "media": "(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
+        },
+        {
+          "url": "/favicon/apple-splash-1125-2436.png",
+          "media": "(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"
+        },
+        {
+          "url": "/favicon/apple-splash-750-1334.png",
+          "media": "(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
+        },
+        {
+          "url": "/favicon/apple-splash-640-1136.png",
+          "media": "(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
+        }
+      ]
+    },
+    "formatDetection": {
+      "telephone": false
+    },
+    "openGraph": {
+      "type": "website",
+      "images": [
+        {
+          "url": "/images/share.png",
+          "width": 1200,
+          "height": 630,
+          "alt": "Merge Fellas Games Portal"
+        }
+      ]
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "images": ["/images/share.png"]
+    },
+    "viewport": {
+      "themeColor": [
+        { "media": "(prefers-color-scheme: dark)", "color": "#000000" },
+        { "media": "(prefers-color-scheme: light)", "color": "#000000" }
+      ],
+      "width": "device-width",
+      "initialScale": 1,
+      "maximumScale": 1,
+      "userScalable": false
+    }
+  },
+  "manifest": {
+    "icons": [
+      {
+        "src": "/favicon/android-chrome-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png",
+        "purpose": "any maskable"
+      },
+      {
+        "src": "/favicon/android-chrome-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "any maskable"
+      },
+      {
+        "src": "/favicon/apple-touch-icon.png",
+        "sizes": "180x180",
+        "type": "image/png",
+        "purpose": "apple-touch-icon"
+      },
+      {
+        "src": "/favicon/favicon-32x32.png",
+        "sizes": "32x32",
+        "type": "image/png"
+      },
+      {
+        "src": "/favicon/favicon-16x16.png",
+        "sizes": "16x16",
+        "type": "image/png"
+      },
+      {
+        "src": "/favicon/mstile-150x150.png",
+        "sizes": "150x150",
+        "type": "image/png",
+        "purpose": "msapplication-icon"
+      }
+    ],
+    "splash_screens": [
+      {
+        "src": "/favicon/apple-splash-2048-2732.png",
+        "sizes": "2048x2732",
+        "type": "image/png"
+      },
+      {
+        "src": "/favicon/apple-splash-1668-2388.png",
+        "sizes": "1668x2388",
+        "type": "image/png"
+      },
+      {
+        "src": "/favicon/apple-splash-1536-2048.png",
+        "sizes": "1536x2048",
+        "type": "image/png"
+      },
+      {
+        "src": "/favicon/apple-splash-1125-2436.png",
+        "sizes": "1125x2436",
+        "type": "image/png"
+      },
+      {
+        "src": "/favicon/apple-splash-750-1334.png",
+        "sizes": "750x1334",
+        "type": "image/png"
+      },
+      {
+        "src": "/favicon/apple-splash-640-1136.png",
+        "sizes": "640x1136",
+        "type": "image/png"
+      }
+    ],
+    "display": "standalone",
+    "orientation": "portrait",
+    "scope": "/",
+    "start_url": "/"
+  },
+  "robots": {
+    "rules": {
+      "userAgent": "*",
+      "allow": "/",
+      "disallow": ["/private/", "/admin/"]
+    }
+  },
+  "sitemap": {
+    "staticRoutes": [
+      {
+        "path": "/",
+        "changeFrequency": "daily",
+        "priority": 1.0,
+        "keywords": "merge games, puzzle games, online games, free games, merge fellas, casual games, home"
+      },
+      {
+        "path": "/games",
+        "changeFrequency": "daily",
+        "priority": 0.9,
+        "keywords": "merge games, puzzle games, online games, free games, merge fellas, game collection, play games"
+      },
+      {
+        "path": "/blog",
+        "changeFrequency": "weekly",
+        "priority": 0.8,
+        "keywords": "merge games blog, game guides, game news, merge fellas updates, game tips"
+      }
+    ],
+    "dynamicRoutes": {
+      "blog": {
+        "changeFrequency": "monthly",
+        "priority": 0.7,
+        "keywordsPrefix": "blog post, merge fellas, game blog, "
+      },
+      "games": {
+        "changeFrequency": "monthly",
+        "priority": 0.6,
+        "keywordsPrefix": "play game, merge fellas, online game, "
+      }
+    }
+  }
+} 

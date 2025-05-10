@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 import blogData from '@/data/blog.json';
 import gamesData from '@/data/games.json';
+import { getSiteInfo, getSitemapConfig } from '@/lib/site-config';
 
 type ChangeFrequency = 'daily' | 'weekly' | 'monthly' | 'always' | 'hourly' | 'yearly' | 'never';
 
@@ -9,44 +10,32 @@ export const dynamic = 'force-static';
 export const revalidate = false;
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://italianbrainrot-games.github.io';
+  const siteInfo = getSiteInfo();
+  const sitemapConfig = getSitemapConfig();
+  const baseUrl = siteInfo.url;
 
-  // Static routes
-  const staticRoutes: MetadataRoute.Sitemap = [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'daily' as ChangeFrequency,
-      priority: 1.0,
-    },
-    {
-      url: `${baseUrl}/games`,
-      lastModified: new Date(),
-      changeFrequency: 'daily' as ChangeFrequency,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/blog`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as ChangeFrequency,
-      priority: 0.8,
-    },
-  ];
+  // 静态路由
+  const staticRoutes: MetadataRoute.Sitemap = sitemapConfig.staticRoutes.map(route => ({
+    url: `${baseUrl}${route.path}`,
+    lastModified: new Date(),
+    changeFrequency: route.changeFrequency as ChangeFrequency,
+    priority: route.priority,
+  }));
 
-  // Blog routes
+  // 博客路由
   const blogRoutes = blogData.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
     lastModified: new Date(post.date),
-    changeFrequency: 'monthly' as ChangeFrequency,
-    priority: 0.7,
+    changeFrequency: sitemapConfig.dynamicRoutes.blog.changeFrequency as ChangeFrequency,
+    priority: sitemapConfig.dynamicRoutes.blog.priority,
   }));
 
-  // Game routes
+  // 游戏路由
   const gameRoutes = gamesData.map((game) => ({
     url: `${baseUrl}/games/${game.slug}`,
     lastModified: new Date(),
-    changeFrequency: 'monthly' as ChangeFrequency,
-    priority: 0.6,
+    changeFrequency: sitemapConfig.dynamicRoutes.games.changeFrequency as ChangeFrequency,
+    priority: sitemapConfig.dynamicRoutes.games.priority,
   }));
 
   return [...staticRoutes, ...blogRoutes, ...gameRoutes];

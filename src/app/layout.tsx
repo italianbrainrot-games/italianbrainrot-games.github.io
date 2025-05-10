@@ -6,8 +6,7 @@ import Image from "next/image";
 import BackgroundImage from "@/components/ui/BackgroundImage";
 import OptimizedBackground from "@/components/ui/OptimizedBackground";
 import { GoogleAnalytics } from '@next/third-parties/google'
-
-
+import { getSiteInfo, getSeoConfig } from "@/lib/site-config";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,101 +18,35 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const viewport: Viewport = {
-  themeColor: [
-    { media: '(prefers-color-scheme: dark)', color: '#000000' },
-    { media: '(prefers-color-scheme: light)', color: '#000000' },
-  ],
-  width: 'device-width',
-  initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
-};
+const siteInfo = getSiteInfo();
+const seoConfig = getSeoConfig();
+
+export const viewport: Viewport = seoConfig.viewport as Viewport;
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://italianbrainrot-games.github.io'),
-  title: "Italian Brainrot Game Portal",
-  description: "Discover, experience and share various Italian Brainrot games on our portal",
-  icons: {
-    icon: [
-      { url: '/favicon.ico', sizes: '16x16' },
-      { url: '/favicon.ico', sizes: '32x32' },
-      { url: '/favicon.ico', sizes: '48x48' },
-      { url: '/favicon/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-    ],
-    apple: [
-      { url: '/favicon/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
-    ],
-    other: [
-      {
-        rel: 'mask-icon',
-        url: '/favicon/safari-pinned-tab.svg',
-        color: '#000000',
-      },
-      {
-        rel: 'manifest',
-        url: '/site.webmanifest',
-      },
-    ],
-  },
-  applicationName: 'Italian Brainrot Game Portal',
-  appleWebApp: {
-    capable: true,
-    title: 'Italian Brainrot',
-    statusBarStyle: 'black-translucent',
-    startupImage: [
-      {
-        url: '/favicon/apple-splash-2048-2732.png',
-        media: '(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)',
-      },
-      {
-        url: '/favicon/apple-splash-1668-2388.png',
-        media: '(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)',
-      },
-      {
-        url: '/favicon/apple-splash-1536-2048.png',
-        media: '(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)',
-      },
-      {
-        url: '/favicon/apple-splash-1125-2436.png',
-        media: '(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)',
-      },
-      {
-        url: '/favicon/apple-splash-750-1334.png',
-        media: '(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)',
-      },
-      {
-        url: '/favicon/apple-splash-640-1136.png',
-        media: '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)',
-      },
-    ],
-  },
-  formatDetection: {
-    telephone: false,
-  },
+  metadataBase: new URL(seoConfig.metadataBase),
+  title: siteInfo.title,
+  description: siteInfo.description,
+  keywords: siteInfo.keywords,
+  icons: seoConfig.icons,
+  applicationName: siteInfo.siteName,
+  appleWebApp: seoConfig.appleWebApp as any,
+  formatDetection: seoConfig.formatDetection,
   openGraph: {
     type: 'website',
-    locale: 'en_US',
-    url: 'https://italianbrainrot.com',
-    siteName: 'Italian Brainrot Game Portal',
-    title: 'Italian Brainrot Game Portal',
-    description: 'Discover, experience and share various Italian Brainrot games on our portal',
-    images: [
-      {
-        url: '/images/share.png',
-        width: 1200,
-        height: 630,
-        alt: 'Italian Brainrot Game Portal',
-      },
-    ],
+    locale: siteInfo.locale,
+    url: siteInfo.url,
+    siteName: siteInfo.siteName,
+    title: siteInfo.title,
+    description: siteInfo.description,
+    images: seoConfig.openGraph.images,
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Italian Brainrot Game Portal',
-    description: 'Discover, experience and share various Italian Brainrot games on our portal',
-    images: ['/images/share.png'],
-    creator: '@ItalianBrainrot',
+    title: siteInfo.title,
+    description: siteInfo.description,
+    images: seoConfig.twitter.images,
+    creator: siteInfo.creator,
   },
 };
 
@@ -123,7 +56,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang={siteInfo.language}>
       <head>
         <link
           rel="preload"
@@ -155,7 +88,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased text-white`}
       >
         {/* Google Analytics */}
-        <GoogleAnalytics gaId="G-3KVNYN1T95" />
+        <GoogleAnalytics gaId={siteInfo.googleAnalyticsId} />
         
         {/* Use both approaches for maximum compatibility */}
         <BackgroundImage />
@@ -168,7 +101,7 @@ export default function RootLayout({
                 <Link href="/" className="font-bold text-xl text-white">
                   <Image
                     src="/long_logo.png"
-                    alt="Italian Brainrot"
+                    alt={siteInfo.siteName}
                     width={180}
                     height={50}
                     className="hidden sm:block object-contain"
@@ -176,7 +109,7 @@ export default function RootLayout({
                   />
                   <Image
                     src="/logo.png"
-                    alt="Italian Brainrot"
+                    alt={siteInfo.siteName}
                     width={40}
                     height={40}
                     className="sm:hidden object-contain"
@@ -205,14 +138,14 @@ export default function RootLayout({
           <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 py-3">
             <div className="flex flex-wrap justify-center items-center">
               <div className="text-center">
-                <h3 className="text-sm font-semibold text-white inline-block mr-2">Italian Brainrot</h3>
+                <h3 className="text-sm font-semibold text-white inline-block mr-2">{siteInfo.siteName}</h3>
                 <p className="text-white/70 text-xs inline-block">
-                  Discover, experience and share various Italian Brainrot games on our portal
+                  {siteInfo.description}
                 </p>
               </div>
             </div>
             <div className="mt-2 pt-2 border-t border-white/10 text-center text-white/50">
-              <p className="text-xs">© {new Date().getFullYear()} Italian Brainrot Game Portal. All rights reserved.</p>
+              <p className="text-xs">© {new Date().getFullYear()} {siteInfo.siteName}. All rights reserved.</p>
             </div>
           </div>
         </footer>

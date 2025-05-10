@@ -1,8 +1,17 @@
+import { generateMetadata as generatePageMetadata } from '@/lib/generate-metadata';
+import blogData from '@/data/blog.json';
 
-import { generateBlogPostMetadata, generateBlogJsonLdData } from '@/lib/seo/blog-seo-config';
-
-// Export the metadata generation function
-export { generateBlogPostMetadata as generateMetadata };
-
-// Export the JSON-LD generation function
-export { generateBlogJsonLdData as generateMetadataJsonLd };
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  const post = blogData.find(post => post.slug === params.slug);
+  
+  if (!post) {
+    return {};
+  }
+  
+  return generatePageMetadata({
+    title: post.title,
+    description: post.excerpt,
+    path: `/blog/${post.slug}`,
+    image: post.coverImage
+  });
+}

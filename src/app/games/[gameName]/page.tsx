@@ -3,17 +3,32 @@ import Image from 'next/image';
 import GamePlayer from '@/components/game/game-player';
 import ShareButton from '@/components/ui/ShareButton';
 import games from '@/data/games.json';
+import { generateMetadata as generatePageMetadata } from '@/lib/generate-metadata';
 
 export const dynamic = 'force-static';
 export const revalidate = false;
-
-import { generateGameMetadata, generateGameJsonLdData } from '@/lib/seo/seo-config';
 
 // Required for static site generation with dynamic routes when using output: 'export'
 export async function generateStaticParams() {
   return games.map((game) => ({
     gameName: game.slug,
   }));
+}
+
+// Generate metadata for the page
+export async function generateMetadata({ params }: { params: { gameName: string } }) {
+  const game = games.find(game => game.slug === params.gameName);
+  
+  if (!game) {
+    return {};
+  }
+  
+  return generatePageMetadata({
+    title: game.name,
+    description: game.description,
+    path: `/games/${game.slug}`,
+    image: game.iconUrl
+  });
 }
 
 // 游戏数据接口
@@ -64,9 +79,6 @@ function getGameData(gameName: string) {
   } as Game
 }
 
-// Generate metadata for the page
-export { generateGameMetadata as generateMetadata };
-
 export default async function GamePage({ params }: { params: Promise<{ gameName: string }> }) {
   // const game = getGameData(params.gameName);
   const { gameName } = await params
@@ -82,13 +94,6 @@ export default async function GamePage({ params }: { params: Promise<{ gameName:
 
   return (
     <main className="px-0 sm:px-4 md:px-12 lg:px-24 py-4">
-      {/* Add structured data */}
-      {generateGameJsonLdData({ params: { gameName } }) && (
-        <div dangerouslySetInnerHTML={{
-          __html: generateGameJsonLdData({ params: { gameName } }) || '',
-        }} />
-      )}
-
       <div className="max-w-full w-full">
         <div className="flex flex-col lg:flex-row gap-8">
           {/* 游戏主内容 */}

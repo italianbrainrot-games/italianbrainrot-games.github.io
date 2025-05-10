@@ -1,10 +1,14 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
-import { getGamesCatalogSEO } from '@/lib/seo/seo-config';
+import { generateMetadata } from '@/lib/generate-metadata';
 import gamesData from '@/data/games.json';
 
-export const metadata: Metadata = getGamesCatalogSEO();
+export const metadata: Metadata = generateMetadata({
+  title: 'Games',
+  description: 'Browse and play the best Merge Fellas games collection',
+  path: '/games'
+});
 
 export default function GamesPage() {
   // Use data from games.json

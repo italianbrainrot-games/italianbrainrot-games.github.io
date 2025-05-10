@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import blogData from '@/data/blog.json';
 import BlogContent from '@/components/blog/BlogContent';
-import { generateMetadataJsonLd } from './metadata';
+import { generateMetadata } from './metadata';
 
 // Required for static site generation with dynamic routes when using output: 'export'
 export async function generateStaticParams() {
@@ -44,9 +44,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   return (
     <>
       {/* Add structured data */}
-      {generateMetadataJsonLd({ slug }) && (
+      {await generateMetadata({ params: { slug } }) && (
         <div dangerouslySetInnerHTML={{
-          __html: generateMetadataJsonLd({ slug }) || '',
+          __html: generateMetadata({ params: { slug } }) || '',
         }} />
       )}
       <BlogContent post={post} />

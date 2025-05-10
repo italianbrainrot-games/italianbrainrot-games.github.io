@@ -2,9 +2,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import blogData from '@/data/blog.json';
 import type { Metadata } from 'next';
-import { getBlogSEO } from '@/lib/seo/seo-config';
+import { generateMetadata } from '@/lib/generate-metadata';
 
-export const metadata: Metadata = getBlogSEO();
+export const metadata: Metadata = generateMetadata({
+  title: 'Blog',
+  description: 'Read the latest news and guides about Merge Fellas games',
+  path: '/blog'
+});
 
 export default function BlogPage() {
   return (
