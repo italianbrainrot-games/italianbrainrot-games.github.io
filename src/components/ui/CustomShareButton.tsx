@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import ShareButton from './ShareButton';
-import { getSiteInfo } from '@/lib/site-config';
+
 
 interface CustomShareButtonProps {
   title: string;
