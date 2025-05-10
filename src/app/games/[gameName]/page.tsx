@@ -79,9 +79,9 @@ function getGameData(gameName: string) {
   } as Game
 }
 
-export default async function GamePage({ params }: { params: Promise<{ gameName: string }> }) {
+export default async function GamePage({ params }: { params: { gameName: string } }) {
   // const game = getGameData(params.gameName);
-  const { gameName } = await params
+  const gameName = params.gameName;
   const game = getGameData(gameName)
 
   // Get similar games based on category
