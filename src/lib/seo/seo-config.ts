@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import { generateJsonLd, generateGameJsonLd } from '@/lib/metadata';
 import gamesData from '@/data/games.json';
+import siteConfig from '@/data/site-config.json';
 
-// 网站基本信息
-const SITE_NAME = 'Italian Brainrot Game Portal';
-const BASE_URL = 'https://italianbrainrot-games.github.io';
-
+// 从配置文件中读取网站基本信息
+const SITE_NAME = siteConfig.siteInfo.siteName;
+const BASE_URL = siteConfig.siteInfo.url;
 
 // 通用SEO配置
 // const defaultSEO: Metadata = {
@@ -41,30 +41,23 @@ const BASE_URL = 'https://italianbrainrot-games.github.io';
 export function getHomeSEO(): Metadata {
   return {
     title: `${SITE_NAME} - Play Free Online Games`,
-    description: "Discover and play the best Italian Brainrot games for free. Enjoy a collection of casual, puzzle, and action games with unique gameplay and meme culture references.",
-    keywords: ["Italian Brainrot", "online games", "free games", "browser games", "meme games", "casual games"],
+    description: siteConfig.siteInfo.description,
+    keywords: siteConfig.siteInfo.keywords.split(', '),
     openGraph: {
       title: `${SITE_NAME} - Play Free Online Games`,
-      description: "Discover and play the best Italian Brainrot games for free. Enjoy a collection of casual, puzzle, and action games with unique gameplay and meme culture references.",
+      description: siteConfig.siteInfo.description,
       url: BASE_URL,
       siteName: SITE_NAME,
-      images: [
-        {
-          url: "/images/share.png",
-          width: 1200,
-          height: 630,
-          alt: SITE_NAME,
-        },
-      ],
-      locale: "en_US",
-      type: "website",
+      images: siteConfig.seo.openGraph.images,
+      locale: siteConfig.siteInfo.locale,
+      type: 'website',
     },
     twitter: {
-      card: "summary_large_image",
+      card: 'summary_large_image',
       title: `${SITE_NAME} - Play Free Online Games`,
-      description: "Discover and play the best Italian Brainrot games for free. Enjoy a collection of casual, puzzle, and action games with unique gameplay and meme culture references.",
-      images: ["/images/share.png"],
-      creator: "@ItalianBrainrot",
+      description: siteConfig.siteInfo.description,
+      images: siteConfig.seo.twitter.images,
+      creator: siteConfig.siteInfo.twitterUsername,
     },
     alternates: {
       canonical: BASE_URL,
@@ -85,8 +78,8 @@ export function getGamesCatalogSEO(
     : baseTitle;
 
   const description = category
-    ? `Browse our collection of ${category} Italian Brainrot games, find your favorite and start playing now.`
-    : 'Browse our complete collection of Italian Brainrot games, find your favorite and start playing now.';
+    ? `Browse our collection of ${category} games, find your favorite and start playing now.`
+    : 'Browse our complete collection of games, find your favorite and start playing now.';
 
   const canonicalUrl = category
     ? `${BASE_URL}/games/category/${category}${page > 1 ? `?page=${page}` : ''}`
@@ -95,28 +88,21 @@ export function getGamesCatalogSEO(
   return {
     title,
     description,
-    keywords: ['Italian Brainrot', 'games', 'game catalog', category].filter(Boolean) as string[],
+    keywords: [category, 'games', 'game catalog', ...siteConfig.siteInfo.keywords.split(', ')].filter(Boolean) as string[],
     openGraph: {
       title,
       description,
       url: canonicalUrl,
       siteName: SITE_NAME,
-      images: [
-        {
-          url: '/images/share.png',
-          width: 1200,
-          height: 630,
-          alt: title,
-        },
-      ],
-      locale: 'en_US',
+      images: siteConfig.seo.openGraph.images,
+      locale: siteConfig.siteInfo.locale,
       type: 'website',
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: ['/images/share.png'],
+      images: siteConfig.seo.twitter.images,
     },
     alternates: {
       canonical: canonicalUrl,
@@ -145,7 +131,7 @@ export function getGameSEO({
   return {
     title: formattedTitle,
     description,
-    keywords: [`Italian Brainrot`, `games`, category, title, `online games`],
+    keywords: [category, title, 'games', 'online games', ...siteConfig.siteInfo.keywords.split(', ')],
     openGraph: {
       title: formattedTitle,
       description,
@@ -159,7 +145,7 @@ export function getGameSEO({
           alt: title,
         },
       ],
-      locale: 'en_US',
+      locale: siteConfig.siteInfo.locale,
       type: 'website',
     },
     twitter: {
@@ -196,10 +182,10 @@ export async function generateGameMetadata({
   const category = gameData.category[0] || 'Game';
 
   return getGameSEO({
-    title: gameData.name,
-    description: gameData.description,
+    title: gameData.name || 'Game',
+    description: gameData.description || `Play ${gameData.name || 'this game'} online for free`,
     category: category,
-    imageUrl: gameData.iconUrl,
+    imageUrl: gameData.iconUrl || '/images/share.png',
     canonicalUrl: canonicalUrl,
   });
 }
@@ -221,9 +207,9 @@ export function generateGameJsonLdData({
   const canonicalUrl = `${BASE_URL}/games/${params.gameName}`;
 
   const jsonLd = generateGameJsonLd({
-    title: gameData.name,
-    description: gameData.description,
-    imageUrl: gameData.iconUrl,
+    title: gameData.name || 'Game',
+    description: gameData.description || `Play ${gameData.name || 'this game'} online for free`,
+    imageUrl: gameData.iconUrl || '/images/share.png',
     url: canonicalUrl,
     releaseDate: '2023-01-15', // Use actual release date if available
     developer: 'Brainrot Studios',
