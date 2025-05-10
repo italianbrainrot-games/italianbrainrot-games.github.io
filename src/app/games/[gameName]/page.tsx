@@ -16,8 +16,9 @@ export async function generateStaticParams() {
 }
 
 // Generate metadata for the page
-export async function generateMetadata({ params }: { params: { gameName: string } }) {
-  const game = games.find(game => game.slug === params.gameName);
+export async function generateMetadata({ params }: { params: Promise<{ gameName: string }> }) {
+  const { gameName } = await params;
+  const game = games.find(game => game.slug === gameName);
   
   if (!game) {
     return {};
@@ -79,10 +80,10 @@ function getGameData(gameName: string) {
   } as Game
 }
 
-export default async function GamePage({ params }: { params: { gameName: string } }) {
+export default async function GamePage({ params }: { params: Promise<{ gameName: string }> }) {
   // const game = getGameData(params.gameName);
-  const gameName = params.gameName;
-  const game = getGameData(gameName)
+  const { gameName } = await params;
+  const game = getGameData(gameName);
 
   // Get similar games based on category
   const similarGames = games

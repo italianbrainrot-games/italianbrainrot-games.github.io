@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   keywords: siteInfo.keywords,
   icons: seoConfig.icons,
   applicationName: siteInfo.siteName,
-  appleWebApp: seoConfig.appleWebApp as any,
+  appleWebApp: seoConfig.appleWebApp as unknown,
   formatDetection: seoConfig.formatDetection,
   openGraph: {
     type: 'website',
