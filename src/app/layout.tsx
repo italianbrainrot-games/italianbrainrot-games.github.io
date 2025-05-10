@@ -155,7 +155,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased text-white`}
       >
         {/* Google Analytics */}
-        <GoogleAnalytics gaId="G-9WS768Q3W8" />
+        <GoogleAnalytics gaId="G-3KVNYN1T95" />
         
         {/* Use both approaches for maximum compatibility */}
         <BackgroundImage />

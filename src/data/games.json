@@ -53,60 +53,12 @@
         "likes": 7
       }
     ]
-  },
-  {
-    "name": "Boba Fusion",
-    "slug": "boba-fusion",
-    "iconUrl": "https://static.taincom.dpdns.org/games/boba-fusion/cover.png",
-    "realUrl": "https://static.taincom.dpdns.org/games/boba-fusion/index.html",
-    "description": "Experience Boba Fusion, a charming bubble tea-themed variation of the classic Suika merging game. Strategically drop and merge boba pearls to form larger ones, carefully managing your cup space in this engaging physics-based puzzle adventure.",
-    "seo_content":"",
-    "category": [
-      "Casual"
-    ],
-    "tags": [
-      "Casual",
-      "Merge",
-      "Puzzle",
-      "Mouse"
-    ],
-    "videoUrl": "",
-    "rating": 3.9,
-    "votes": 812,
-    "technology": "Html 5",
-    "platform": [
-      "Browser"
-    ],
-    "controls": "",
-    "comments": [
-      {
-        "username": "TeaLover",
-        "avatar": "https://randomuser.me/api/portraits/men/67.jpg",
-        "content": "If you like relaxing games that still feel rewarding, this one’s for you.",
-        "timestamp": "2025-05-07T12:00:00Z",
-        "likes": 13
-      },
-      {
-        "username": "BubbleGuru",
-        "avatar": "https://randomuser.me/api/portraits/men/1.jpg",
-        "content": "I love games like this—no pressure, just fun.",
-        "timestamp": "2025-05-05T12:00:00Z",
-        "likes": 10
-      },
-      {
-        "username": "QuickSip",
-        "avatar": "https://randomuser.me/api/portraits/men/44.jpg",
-        "content": "Doesn’t take much time to learn, but it’s hard to put down.",
-        "timestamp": "2025-05-09T06:00:00Z",
-        "likes": 8
-      }
-    ]
-  },
+  }, 
   {
     "name": "Merge Fellas: Italian Brainrot",
     "slug": "merge-fellas-italian-brainrot",
-    "iconUrl": "https://static.taincom.dpdns.org/games/merge-fellas/cover.png",
-    "realUrl": "https://static.taincom.dpdns.org/games/merge-fellas/index.html",
+    "iconUrl": "https://brain-lines.io/data/image/merge-fellas-b1.jpg",
+    "realUrl": "https://game-merge.mergefellas.app/merge-game.html",
     "description": "Merge Fellas is a captivating puzzle game that blends meme culture with Italian Brainrot elements, challenging your logic and creativity as you merge quirky characters into larger, more complex forms.",
     "seo_content": "<section id=\"merge-fellas-overview\">\n  <h2>Overview</h2>\n  <p>\n    Dive into <strong>Merge Fellas</strong>, the addictive <em>merge puzzle game</em> that melds strategic thinking with meme-fueled humor. Set against a vibrant Italian backdrop, <strong>Italian Brainrot</strong> characters pop to life as you combine, evolve, and collect over 50 absurd creations. From Cappuccino Ballerinas to Flying Pizza Cats, every merge delivers a fresh brain-teasing challenge and keeps you hooked for hours.\n  </p>\n</section>\n\n<section id=\"merge-fellas-features\">\n  <h2>Key Features</h2>\n  <ul>\n    <li>\n      <strong>Innovative Merge Mechanics</strong><br>\n      Seamlessly drag and drop identical items to unlock higher-tier characters. As you progress, merges trigger satisfying chain reactions that fuel strategic depth.\n    </li>\n    <li>\n      <strong>Italian Brainrot Collection</strong><br>\n      Assemble a roster of 50+ surreal, AI-inspired Italian Brainrot characters. Each merge unleashes new visual delights, blending internet meme culture with classic Italian tropes.\n    </li>\n    <li>\n      <strong>Progressive Difficulty</strong><br>\n      Begin with simple merges, then tackle increasingly complex boards that test your planning, pattern recognition, and problem-solving skills.\n    </li>\n    <li>\n      <strong>Vibrant Meme-Style Graphics</strong><br>\n      Enjoy colorful, cartoonish art and playful animations that bring every absurd character to life—perfect for social sharing and replay value.\n    </li>\n    <li>\n      <strong>Regular Updates & Events</strong><br>\n      Stay engaged with frequent content drops: new Brainrot characters, limited-time themed events, and seasonal challenges ensure <em>Merge Fellas</em> never grows stale.\n    </li>\n  </ul>\n</section>\n\n<section id=\"merge-fellas-how-to-play\">\n  <h2>How to Play</h2>\n  <ol>\n    <li><strong>Click & Drag</strong> similar items to merge them.</li>\n    <li><strong>Plan Your Board</strong>: Always leave space for new items to appear.</li>\n    <li><strong>Trigger Chain Reactions</strong>: Strategic placement maximizes chain merges for higher-tier characters.</li>\n    <li><strong>Complete Objectives</strong>: Hit level goals—like merging specific Brainrot characters—to advance.</li>\n  </ol>\n</section>\n\n<section id=\"merge-fellas-tips\">\n  <h2>Merging Tips &amp; Strategies</h2>\n  <ul>\n    <li><strong>Master Board Management</strong>: Reserve at least two free slots to avoid clutter.</li>\n    <li><strong>Focus on Rare Combos</strong>: Spot and prioritize merges that unlock ultra-rare Brainrot characters.</li>\n    <li><strong>Leverage Chain Merges</strong>: A single move can cascade into multiple merges—use this to clear crowded boards.</li>\n    <li><strong>Consult Evolution Paths</strong>: Review the character evolution chart to map out the fastest route to powerful Italian Brainrot outcomes.</li>\n  </ul>\n</section>\n\n<section id=\"merge-fellas-faq\">\n  <h2>Frequently Asked Questions</h2>\n  <dl>\n    <dt>What is Merge Fellas?</dt>\n    <dd>A relaxing yet challenging merge puzzle game where you combine identical items to create absurd Italian Brainrot characters and conquer evolving puzzles.</dd>\n    <dt>How many Italian Brainrot characters are there?</dt>\n    <dd>Over 50 unique, AI-inspired characters—from Cappuccino Ballerinas to Flying Pizza Cats—each with its own surreal flair.</dd>\n    <dt>Can I play offline?</dt>\n    <dd>Yes—most puzzles work offline. Online connectivity is only needed for cross-device sync and limited-time events.</dd>\n    <dt>How do I unlock rare Brainrot characters?</dt>\n    <dd>Complete specific merge chains outlined in the in-game evolution chart. Advanced merges often require multi-step strategies.</dd>\n    <dt>Who is Merge Fellas for?</dt>\n    <dd>Puzzle lovers, meme enthusiasts, and casual gamers of all ages will enjoy its approachable mechanics, non-violent theme, and endless replayability.</dd>\n  </dl>\n</section>\n\n<section id=\"merge-fellas-cta\">\n  <h2>Ready to Play?</h2>\n  <p>\n    Challenge your mind—start playing <strong>Merge Fellas: Italian Brainrot</strong> today and build the most absurd Brainrot collection!\n  </p>\n</section>",
     "category": [
@@ -155,54 +107,6 @@
         "content": "Simple but fun.",
         "timestamp": "2025-05-09T04:00:00Z",
         "likes": 7
-      }
-    ]
-  },
-  {
-    "name": "Suika Game",
-    "slug": "suika-game",
-    "iconUrl": "https://static.taincom.dpdns.org/games/suika-game/cover.png",
-    "realUrl": "https://static.taincom.dpdns.org/games/suika-game/index.html",
-    "description": "Experience the addictive Suika Game, a physics-based puzzle where you strategically merge fruits to form larger ones, aiming to create the ultimate watermelon. Hone your timing and strategy to excel in this popular challenge.",
-    "seo_content":"",
-    "category": [
-      "Casual"
-    ],
-    "tags": [
-      "Merge",
-      "Casual",
-      "Puzzle",
-      "Mouse"
-    ],
-    "videoUrl": "",
-    "rating": 4.4,
-    "votes": 678,
-    "technology": "Html 5",
-    "platform": [
-      "Browser"
-    ],
-    "controls": "",
-    "comments": [
-      {
-        "username": "FruitFan",
-        "avatar": "https://randomuser.me/api/portraits/men/45.jpg",
-        "content": "It’s peaceful, colorful, and just the right amount of challenging.",
-        "timestamp": "2025-05-07T12:00:00Z",
-        "likes": 14
-      },
-      {
-        "username": "StackMaster",
-        "avatar": "https://randomuser.me/api/portraits/men/2.jpg",
-        "content": "Great way to unwind.",
-        "timestamp": "2025-05-05T12:00:00Z",
-        "likes": 11
-      },
-      {
-        "username": "QuickDrop",
-        "avatar": "https://randomuser.me/api/portraits/men/67.jpg",
-        "content": "Chill and satisfying.",
-        "timestamp": "2025-05-09T06:00:00Z",
-        "likes": 8
       }
     ]
   },
