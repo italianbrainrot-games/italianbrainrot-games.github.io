@@ -14,8 +14,8 @@ export default function GitHubPagesImage(props) {
 
   // 如果src是绝对路径但不是绝对URL，并且我们在GitHub Pages环境中，则转换为相对路径
   if (isGitHubPages && src.startsWith('/') && !src.startsWith('//') && !src.startsWith('http')) {
-    // 将绝对路径转换为相对路径
-    src = `.${src}`;
+    // 将绝对路径转换为相对路径，确保在不同域名下都能正确加载
+    src = src.startsWith('./') ? src : `.${src}`;
   }
 
   // 返回带有修改后src的Image组件

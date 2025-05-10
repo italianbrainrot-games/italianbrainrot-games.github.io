@@ -7,6 +7,8 @@ import BackgroundImage from "@/components/ui/BackgroundImage";
 import OptimizedBackground from "@/components/ui/OptimizedBackground";
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { getSiteInfo, getSeoConfig } from "@/lib/site-config";
+import CanonicalUrl from "@/components/ui/CanonicalUrl";
+import DomainRedirector from "@/components/ui/DomainRedirector";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -62,6 +64,7 @@ export default function RootLayout({
   return (
     <html lang={siteInfo.language}>
       <head>
+        <CanonicalUrl />
         <link
           rel="preload"
           href="/bg-body.png"
@@ -91,6 +94,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased text-white`}
       >
+        {/* 域名重定向组件（默认禁用） */}
+        <DomainRedirector enabled={false} />
+        
         {/* Google Analytics */}
         <GoogleAnalytics gaId={siteInfo.googleAnalyticsId} />
         

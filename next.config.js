@@ -1,4 +1,3 @@
-
 /** @type {import('next').NextConfig} */
 
 // Check if we're in GitHub Pages environment
@@ -9,8 +8,8 @@ let assetPrefix = '';
 let basePath = '';
 
 if (isGithubPages) {
-  // For GitHub Pages deployment at italianbrainrot-games.github.io
-  // We don't need a repo-specific path since this is deployed at the root
+  // 无论在哪个域名下部署，都使用相对路径
+  // 这样可以确保资源在任何GitHub Pages域名下都能正确加载
   assetPrefix = '/';
   basePath = '';
 }
