@@ -12,7 +12,7 @@
     "themeColor": "#000000",
     "backgroundColor": "#000000",
     "googleAnalyticsId": "G-3KVNYN1T95",
-    "keywords": "Merge Fellas, meme culture, Italian Brainrot, merge brainrot, brainrot merge game, merge brainrot, merge fellas brainrot, brainrot"
+    "keywords": "Merge Fellas, meme culture, Italian Brainrot, merge brainrot, brainrot merge game, merge fellas online,merge fellas unblocked,merge fellas free online"
   },
   "seo": {
     "metadataBase": "https://mergefellas-games.github.io",
@@ -21,11 +21,23 @@
         { "url": "/favicon.ico", "sizes": "16x16" },
         { "url": "/favicon.ico", "sizes": "32x32" },
         { "url": "/favicon.ico", "sizes": "48x48" },
-        { "url": "/favicon/favicon-16x16.png", "sizes": "16x16", "type": "image/png" },
-        { "url": "/favicon/favicon-32x32.png", "sizes": "32x32", "type": "image/png" }
+        {
+          "url": "/favicon/favicon-16x16.png",
+          "sizes": "16x16",
+          "type": "image/png"
+        },
+        {
+          "url": "/favicon/favicon-32x32.png",
+          "sizes": "32x32",
+          "type": "image/png"
+        }
       ],
       "apple": [
-        { "url": "/favicon/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+        {
+          "url": "/favicon/apple-touch-icon.png",
+          "sizes": "180x180",
+          "type": "image/png"
+        }
       ],
       "other": [
         {
@@ -213,4 +225,4 @@
       }
     }
   }
-} 
+}
