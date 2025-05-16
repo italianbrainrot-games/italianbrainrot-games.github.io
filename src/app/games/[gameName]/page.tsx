@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import GamePlayer from '@/components/game/game-player';
 import ShareButton from '@/components/ui/ShareButton';
+import GameSeoContent from '@/components/game/game-seo-content';
 import games from '@/data/games.json';
 import { generateMetadata as generatePageMetadata } from '@/lib/generate-metadata';
 
@@ -55,6 +56,7 @@ interface Game {
   technology: string;
   platform: string[];
   controls: string;
+  seoContent: string;
 }
 
 
@@ -76,7 +78,8 @@ function getGameData(gameName: string) {
     votes: temp?.votes || 0,
     technology: temp?.technology || 'HTML5',
     platform: temp?.platform || ['Browser'],
-    controls: temp?.controls || ''
+    controls: temp?.controls || '',
+    seoContent: temp?.seo_content || ''
   } as Game
 }
 
@@ -179,6 +182,9 @@ export default async function GamePage({ params }: { params: Promise<{ gameName:
                 </div>
               </div>
             </div>
+
+            {/* SEO Content Section */}
+            <GameSeoContent seoContent={game.seoContent} />
 
             {/* Comments and Similar Games Section */}
             <div className="flex flex-col lg:flex-row gap-8">
