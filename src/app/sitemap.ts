@@ -2,9 +2,6 @@ import { MetadataRoute } from 'next';
 import blogData from '@/data/blog.json';
 import gamesData from '@/data/games.json';
 import { getSiteInfo, getSitemapConfig } from '@/lib/site-config';
-
-type ChangeFrequency = 'daily' | 'weekly' | 'monthly' | 'always' | 'hourly' | 'yearly' | 'never';
-
 // 添加这些行来确保静态导出
 export const dynamic = 'force-static';
 export const revalidate = false;
