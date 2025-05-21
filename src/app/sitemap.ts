@@ -18,7 +18,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = sitemapConfig.staticRoutes.map(route => ({
     url: `${baseUrl}${route.path}`,
     lastModified: new Date(),
-    changeFrequency: route.changeFrequency as ChangeFrequency,
     priority: route.priority,
   }));
 
@@ -26,7 +25,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const blogRoutes = blogData.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
     lastModified: new Date(post.date),
-    changeFrequency: sitemapConfig.dynamicRoutes.blog.changeFrequency as ChangeFrequency,
     priority: sitemapConfig.dynamicRoutes.blog.priority,
   }));
 
@@ -34,7 +32,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const gameRoutes = gamesData.map((game) => ({
     url: `${baseUrl}/games/${game.slug}`,
     lastModified: new Date(),
-    changeFrequency: sitemapConfig.dynamicRoutes.games.changeFrequency as ChangeFrequency,
     priority: sitemapConfig.dynamicRoutes.games.priority,
   }));
 
