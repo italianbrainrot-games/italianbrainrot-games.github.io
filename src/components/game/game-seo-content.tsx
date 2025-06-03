@@ -164,7 +164,7 @@ const GameSeoContent: React.FC<GameSeoContentProps> = ({
   // 生成 Video JSON-LD
   const generateVideoJsonLd = () => {
     if (!videoContent) return null;
-
+    console.log(videoContent);
     const videoData: Record<string, unknown> = {
       "@context": "https://schema.org",
       "@type": "VideoObject",
@@ -275,7 +275,7 @@ const GameSeoContent: React.FC<GameSeoContentProps> = ({
       applicationCategory: "Game",
       aggregateRating: {
         "@type": "AggregateRating",
-        ratingValue: ratingContent.ratingValue.toString(),
+        ratingValue: ratingContent.ratingValue?.toString() || "4.7",
         bestRating: (ratingContent.bestRating || 5).toString(),
         worstRating: (ratingContent.worstRating || 1).toString(),
       },
@@ -291,11 +291,13 @@ const GameSeoContent: React.FC<GameSeoContentProps> = ({
       (ratingData as { url: string }).url = gameUrl;
     }
     if (ratingContent.ratingCount) {
+      console.log(ratingContent.ratingCount);
       (
         ratingData as { aggregateRating: { ratingCount: string } }
       ).aggregateRating.ratingCount = ratingContent.ratingCount.toString();
     }
     if (ratingContent.reviewCount) {
+      console.log(ratingContent.reviewCount);
       (
         ratingData as { aggregateRating: { reviewCount: string } }
       ).aggregateRating.reviewCount = ratingContent.reviewCount.toString();

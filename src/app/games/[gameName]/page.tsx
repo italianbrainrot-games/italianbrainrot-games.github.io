@@ -89,9 +89,9 @@ function getGameData(gameName: string) {
     platform: temp?.platform || ["Browser"],
     controls: temp?.controls || "",
     seoContent: temp?.seo_content || "",
-    videoContent: temp?.video_content || {},
-    ratingContent: temp?.rating_content || {},
-    faqContent: temp?.faq_content || [],
+    videoContent: temp?.videoContent || {},
+    ratingContent: temp?.ratingContent || {},
+    faqContent: temp?.faqContent || [],
     name: temp?.name || "",
     realUrl: temp?.realUrl || "",
   } as Game;
