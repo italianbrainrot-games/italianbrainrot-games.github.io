@@ -1,12 +1,12 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import GamePlayer from '@/components/game/game-player';
-import ShareButton from '@/components/ui/ShareButton';
-import GameSeoContent from '@/components/game/game-seo-content';
-import games from '@/data/games.json';
-import { generateMetadata as generatePageMetadata } from '@/lib/generate-metadata';
+import Link from "next/link";
+import Image from "next/image";
+import GamePlayer from "@/components/game/game-player";
+import ShareButton from "@/components/ui/ShareButton";
+import GameSeoContent, { RatingContent, VideoContent } from "@/components/game/game-seo-content";
+import games from "@/data/games.json";
+import { generateMetadata as generatePageMetadata } from "@/lib/generate-metadata";
 
-export const dynamic = 'force-static';
+export const dynamic = "force-static";
 export const revalidate = false;
 
 // Required for static site generation with dynamic routes when using output: 'export'
@@ -17,21 +17,26 @@ export async function generateStaticParams() {
 }
 
 // Generate metadata for the page
-export async function generateMetadata({ params }: { params: Promise<{ gameName: string }> }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ gameName: string }>;
+}) {
   const { gameName } = await params;
-  const game = games.find(game => game.slug === gameName);
-  
+  const game = games.find((game) => game.slug === gameName);
+
   if (!game) {
     return {};
   }
-  
+
   return generatePageMetadata({
     title: game.name,
     description: game.description,
     path: `/games/${game.slug}`,
-    image: game.iconUrl
+    image: game.iconUrl,
   });
 }
+
 
 // 游戏数据接口
 interface Game {
@@ -57,12 +62,16 @@ interface Game {
   platform: string[];
   controls: string;
   seoContent: string;
+  videoContent?: VideoContent;
+  ratingContent?: RatingContent;
+  faqContent?: { question: string; answer: string }[];
+  name: string;
+  realUrl: string;
 }
-
 
 // 模拟游戏数据获取函数
 function getGameData(gameName: string) {
-  const temp = games.find(game => game.slug === gameName)
+  const temp = games.find((game) => game.slug === gameName) as any;
   return {
     id: temp?.name,
     title: temp?.name,
@@ -71,28 +80,38 @@ function getGameData(gameName: string) {
     rating: temp?.rating,
     embedUrl: temp?.realUrl,
     comments: temp?.comments || [{}],
-    releaseDate: '2023-01-15',
-    developer: 'Brainrot Studios',
+    releaseDate: "2023-01-15",
+    developer: "Brainrot Studios",
     category: temp?.category || [],
     tags: temp?.tags || [],
     votes: temp?.votes || 0,
-    technology: temp?.technology || 'HTML5',
-    platform: temp?.platform || ['Browser'],
-    controls: temp?.controls || '',
-    seoContent: temp?.seo_content || ''
-  } as Game
+    technology: temp?.technology || "HTML5",
+    platform: temp?.platform || ["Browser"],
+    controls: temp?.controls || "",
+    seoContent: temp?.seo_content || "",
+    videoContent: temp?.video_content || {},
+    ratingContent: temp?.rating_content || {},
+    faqContent: temp?.faq_content || [],
+    name: temp?.name || "",
+    realUrl: temp?.realUrl || "",
+  } as Game;
 }
 
-export default async function GamePage({ params }: { params: Promise<{ gameName: string }> }) {
+export default async function GamePage({
+  params,
+}: {
+  params: Promise<{ gameName: string }>;
+}) {
   // const game = getGameData(params.gameName);
   const { gameName } = await params;
   const game = getGameData(gameName);
 
   // Get similar games based on category
   const similarGames = games
-    .filter(g =>
-      g.slug !== gameName &&
-      g.category.some(cat => game.category.includes(cat))
+    .filter(
+      (g) =>
+        g.slug !== gameName &&
+        g.category.some((cat) => game.category.includes(cat))
     )
     .slice(0, 5);
 
@@ -123,7 +142,9 @@ export default async function GamePage({ params }: { params: Promise<{ gameName:
               {/* 中间 - 游戏标题和描述 */}
               <div className="md:w-2/4">
                 <div className="flex justify-between items-start mb-3">
-                  <h1 className="text-3xl font-bold text-white">{game.title}</h1>
+                  <h1 className="text-3xl font-bold text-white">
+                    {game.title}
+                  </h1>
                   <ShareButton
                     title={game.title}
                     imageUrl={game.imageUrl}
@@ -136,7 +157,9 @@ export default async function GamePage({ params }: { params: Promise<{ gameName:
                 {/* 游戏控制说明 */}
                 {game.controls && (
                   <div className="mt-4">
-                    <h3 className="text-xl font-semibold mb-2 text-white">Controls</h3>
+                    <h3 className="text-xl font-semibold mb-2 text-white">
+                      Controls
+                    </h3>
                     <div className="text-white/80 whitespace-pre-line text-sm bg-black/20 p-3 rounded-lg">
                       {game.controls}
                     </div>
@@ -148,50 +171,76 @@ export default async function GamePage({ params }: { params: Promise<{ gameName:
               <div className="md:w-1/4 space-y-4 text-white">
                 <div>
                   <span className="block text-white/60 text-sm">Type:</span>
-                  <span className="font-medium">{game.category.join(', ')}</span>
+                  <span className="font-medium">
+                    {game.category.join(", ")}
+                  </span>
                 </div>
                 <div>
                   <span className="block text-white/60 text-sm">Tags:</span>
                   <div className="flex flex-wrap gap-1 mt-1">
                     {game.tags.map((tag, index) => (
-                      <span key={index} className="text-xs px-2 py-0.5 bg-white/10 rounded-full text-white/80">
+                      <span
+                        key={index}
+                        className="text-xs px-2 py-0.5 bg-white/10 rounded-full text-white/80"
+                      >
                         {tag}
                       </span>
                     ))}
                   </div>
                 </div>
                 <div>
-                  <span className="block text-white/60 text-sm">Developer:</span>
-                  <span className="font-medium text-amber-500">{game.developer}</span>
+                  <span className="block text-white/60 text-sm">
+                    Developer:
+                  </span>
+                  <span className="font-medium text-amber-500">
+                    {game.developer}
+                  </span>
                 </div>
                 <div>
-                  <span className="block text-white/60 text-sm">Technology:</span>
+                  <span className="block text-white/60 text-sm">
+                    Technology:
+                  </span>
                   <span className="font-medium">{game.technology}</span>
                 </div>
                 <div>
                   <span className="block text-white/60 text-sm">Rating:</span>
                   <div className="flex items-center">
-                    <span className="font-medium">{game.rating.toFixed(1)}</span>
+                    <span className="font-medium">
+                      {game.rating.toFixed(1)}
+                    </span>
                     <span className="mx-1">/ 10</span>
                     <span className="text-amber-500">({game.votes} votes)</span>
                   </div>
                 </div>
                 <div>
                   <span className="block text-white/60 text-sm">Platform:</span>
-                  <span className="font-medium">{game.platform.join(', ')}</span>
+                  <span className="font-medium">
+                    {game.platform.join(", ")}
+                  </span>
                 </div>
               </div>
             </div>
 
             {/* SEO Content Section */}
-            <GameSeoContent seoContent={game.seoContent} />
+            <GameSeoContent
+              seoContent={game.seoContent}
+              videoContent={game.videoContent as VideoContent}
+              ratingContent={game.ratingContent as RatingContent}
+              gameName={game.name}
+              gameUrl={game.realUrl}
+              faqContent={
+                game.faqContent as { question: string; answer: string }[]
+              }
+            />
 
             {/* Comments and Similar Games Section */}
             <div className="flex flex-col lg:flex-row gap-8">
               {/* Comments Section - Left */}
               <div className="lg:w-2/3 bg-black/40 backdrop-blur-md rounded-none sm:rounded-xl p-4 sm:p-6 border border-white/10">
                 <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-2xl font-bold text-white uppercase">Comments</h2>
+                  <h2 className="text-2xl font-bold text-white uppercase">
+                    Comments
+                  </h2>
                   <div className="bg-red-500 rounded-full w-6 h-6 flex items-center justify-center">
                     <span className="text-xs text-white">!</span>
                   </div>
@@ -201,7 +250,9 @@ export default async function GamePage({ params }: { params: Promise<{ gameName:
                   Check out what other players think about this game!
                 </p>
 
-                <div className="text-xl font-bold text-white mb-6">{game.comments.length} Comments</div>
+                <div className="text-xl font-bold text-white mb-6">
+                  {game.comments.length} Comments
+                </div>
 
                 {/* Comment list */}
                 <div className="space-y-6">
@@ -218,18 +269,31 @@ export default async function GamePage({ params }: { params: Promise<{ gameName:
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="font-bold text-white">@{comment.username}</span>
-                          <span className="text-xs text-gray-400">{formatTimeAgo(comment.timestamp)}</span>
+                          <span className="font-bold text-white">
+                            @{comment.username}
+                          </span>
+                          <span className="text-xs text-gray-400">
+                            {formatTimeAgo(comment.timestamp)}
+                          </span>
                         </div>
                         <p className="text-white/90 mb-2">{comment.content}</p>
                         <div className="flex gap-4">
                           <button className="flex items-center gap-1 text-white/60 hover:text-white transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
                               <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
                             </svg>
                             <span>{comment.likes}</span>
                           </button>
-
                         </div>
                       </div>
                     </div>
@@ -239,11 +303,17 @@ export default async function GamePage({ params }: { params: Promise<{ gameName:
 
               {/* Similar Games Section - Right */}
               <div className="lg:w-1/3 bg-black/40 backdrop-blur-md rounded-none sm:rounded-xl p-4 sm:p-6 border border-white/10">
-                <h2 className="text-2xl font-bold text-white uppercase mb-6">Similar</h2>
+                <h2 className="text-2xl font-bold text-white uppercase mb-6">
+                  Similar
+                </h2>
 
                 <div className="space-y-4">
                   {similarGames.map((game) => (
-                    <Link key={game.slug} href={`/games/${game.slug}`} className="block">
+                    <Link
+                      key={game.slug}
+                      href={`/games/${game.slug}`}
+                      className="block"
+                    >
                       <div className="flex gap-3 group">
                         <div className="relative w-24 h-16 rounded-md overflow-hidden shrink-0">
                           <Image
@@ -255,17 +325,33 @@ export default async function GamePage({ params }: { params: Promise<{ gameName:
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                         </div>
                         <div className="flex-1">
-                          <h3 className="font-bold text-white group-hover:text-orange-400 transition-colors line-clamp-1">{game.name}</h3>
+                          <h3 className="font-bold text-white group-hover:text-orange-400 transition-colors line-clamp-1">
+                            {game.name}
+                          </h3>
                           <div className="flex flex-wrap gap-1 mt-1">
                             {game.category.slice(0, 1).map((cat, idx) => (
-                              <span key={idx} className="text-xs px-2 py-0.5 bg-orange-500/80 text-white rounded-sm">
+                              <span
+                                key={idx}
+                                className="text-xs px-2 py-0.5 bg-orange-500/80 text-white rounded-sm"
+                              >
                                 {cat}
                               </span>
                             ))}
                           </div>
                         </div>
                         <div className="flex items-center">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white/60 group-hover:text-orange-400 transition-colors">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="text-white/60 group-hover:text-orange-400 transition-colors"
+                          >
                             <polygon points="5 3 19 12 5 21 5 3"></polygon>
                           </svg>
                         </div>
@@ -292,26 +378,26 @@ function formatTimeAgo(timestamp: string): string {
     const diffMs = now.getTime() - date.getTime();
     const diffMins = Math.round(diffMs / 60000);
 
-    if (diffMins < 1) return 'just now';
-    if (diffMins === 1) return '1 minute ago';
+    if (diffMins < 1) return "just now";
+    if (diffMins === 1) return "1 minute ago";
     if (diffMins < 60) return `${diffMins} minutes ago`;
 
     const diffHours = Math.floor(diffMins / 60);
-    if (diffHours === 1) return '1 hour ago';
+    if (diffHours === 1) return "1 hour ago";
     if (diffHours < 24) return `${diffHours} hours ago`;
 
     const diffDays = Math.floor(diffHours / 24);
-    if (diffDays === 1) return '1 day ago';
+    if (diffDays === 1) return "1 day ago";
     if (diffDays < 30) return `${diffDays} days ago`;
 
     const diffMonths = Math.floor(diffDays / 30);
-    if (diffMonths === 1) return '1 month ago';
+    if (diffMonths === 1) return "1 month ago";
     if (diffMonths < 12) return `${diffMonths} months ago`;
 
     const diffYears = Math.floor(diffMonths / 12);
-    if (diffYears === 1) return '1 year ago';
+    if (diffYears === 1) return "1 year ago";
     return `${diffYears} years ago`;
   } catch {
-    return '5 minutes ago'; // Fallback
+    return "5 minutes ago"; // Fallback
   }
 }
