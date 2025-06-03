@@ -2,7 +2,10 @@ import Link from "next/link";
 import Image from "next/image";
 import GamePlayer from "@/components/game/game-player";
 import ShareButton from "@/components/ui/ShareButton";
-import GameSeoContent, { RatingContent, VideoContent } from "@/components/game/game-seo-content";
+import GameSeoContent, {
+  RatingContent,
+  VideoContent,
+} from "@/components/game/game-seo-content";
 import games from "@/data/games.json";
 import { generateMetadata as generatePageMetadata } from "@/lib/generate-metadata";
 
@@ -37,7 +40,6 @@ export async function generateMetadata({
   });
 }
 
-
 // 游戏数据接口
 interface Game {
   id: string;
@@ -71,7 +73,7 @@ interface Game {
 
 // 模拟游戏数据获取函数
 function getGameData(gameName: string) {
-  const temp = games.find((game) => game.slug === gameName) as any;
+  const temp = games.find((game) => game.slug === gameName);
   return {
     id: temp?.name,
     title: temp?.name,
