@@ -1,0 +1,12 @@
+/* 
+  This file contains styles that will be applied immediately 
+  before any JavaScript runs to prevent the white flash
+*/
+
+body {
+  background-color: #000 !important;
+  background-image: url('/bg-body.png') !important;
+  background-repeat: repeat !important;
+  background-size: auto !important;
+  background-attachment: fixed !important;
+}

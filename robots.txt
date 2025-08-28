@@ -1,0 +1,6 @@
+User-Agent: *
+Allow: /
+Disallow: /private/
+Disallow: /admin/
+
+Sitemap: https://italianbrainrot-games.github.io/sitemap.xml
